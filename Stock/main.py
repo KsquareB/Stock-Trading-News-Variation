@@ -46,15 +46,10 @@ if diff_percent > 0.3:
     news_response = requests.get(NEWS_ENDPOINT, news_params)
     articles = news_response.json()["articles"]
     print(articles)
-    ## STEP 2: https://newsapi.org/ 
-    # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
-
+    
 
     three_articles = articles[0:3]
     formatted_articles = [f"{STOCK_NAME}:{up_down}{round(abs(diff_percent))}% \nHeadline : {article['title']}. \nBrief: {article['description']}" for article in three_articles]
-
-    ## STEP 3: Use twilio.com/docs/sms/quickstart/python
-    #to send a separate message with each article's title and description to your phone number. 
 
 
     client = Client(account_sid, auth_token)
